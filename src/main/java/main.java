@@ -39,10 +39,12 @@ public class main {
 
             }
         }
-        
+
         for (int i = 0; i < humans.size(); i++) {
             humans.get(i).getInfo();
         }
+
+        humans.get(4).step(humans.get(3));
     }
 
     public static String getName(){
