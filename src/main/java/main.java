@@ -31,7 +31,7 @@ public class main {
         team1.add(new Sniper("Reon"));
 
         System.out.println(team1.get(10).getInfo());
-        team1.get(0).step();
+        team1.get(10).step();
         System.out.println(team1.get(10).getInfo());
 
     }
