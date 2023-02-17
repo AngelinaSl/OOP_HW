@@ -1,25 +1,26 @@
 package Unit;
 
-public class Witch extends Supernatural{
-
-    public Witch(String name, Integer hp, Integer maxHp, Integer attack, Integer damage,
-                 Integer protection, Integer speed, int mana, int maxMana) {
-        super(name, hp, maxHp, attack, damage, protection, speed, mana, maxMana);
+public class Witch extends Magic {
+    public Witch(String name, Float hp, Integer maxHp, Integer attack, Integer minDamage, Integer maxDamage, Integer protection, Integer speed, Integer posX, Integer posY) {
+        super(name, hp, maxHp, attack, minDamage, maxDamage, protection, speed, posX, posY);
     }
+
+
     public Witch(String name) {
-        super(name, 100, 100, 15, 35, 50, 40, 50, 50);
+        super(name, 20.0f, 20, 17, -5, -5, 12, 8, 4,2);
 
     }
     @Override
-    public void getInfo() {
-        System.out.printf("Я колдун %s! hp: %d, attack: %d\n", Witch.super.name, Witch.super.hp,Witch.super.attack);
-
+    public StringBuilder getInfo() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("Колдун:  \t").append(Witch.super.name)
+                .append("\t HP: \t").append(Witch.super.hp)
+                .append("\t Speed: \t").append(Witch.super.speed)
+                .append("\t ATK: \t").append(Witch.super.attack)
+                .append("\t MP: \t").append(Witch.super.mana);
     }
 
-    //    Магическая атака
-    @Override
-    public Integer getAttack() {
-        return attack;
-    }
+
+
 
 }

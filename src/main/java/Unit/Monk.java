@@ -1,26 +1,29 @@
 package Unit;
 
-public class Monk extends Supernatural {
+public class Monk extends Magic {
 
     int FreezeStep;
-    public Monk(String name, Integer hp, Integer maxHp, Integer attack, Integer damage,
-                Integer protection, Integer speed, int mana, int maxMana) {
-        super(name, hp, maxHp, attack, damage, protection, speed, mana, maxMana);
-        this.FreezeStep = FreezeStep;
+
+    public Monk(String name, Float hp, Integer maxHp, Integer attack, Integer minDamage, Integer maxDamage, Integer protection, Integer speed, Integer posX, Integer posY, int freezeStep) {
+        super(name, hp, maxHp, attack, minDamage, maxDamage, protection, speed, posX, posY);
+        this.FreezeStep = freezeStep;
     }
 
-
-
     public Monk(String name) {
-        super(name, 100, 100, 1, 10, 60, 20, 50, 50 );
+        super(name, 20.0f, 20, 12, -4, -6, 7, 5, 3,1 );
         this.FreezeStep = 7;
 
 
     }
 
     @Override
-    public void getInfo() {
-        System.out.printf("Я монах %s! hp: %d, attack: %d\n", Monk.super.name, Monk.super.hp,Monk.super.attack);
+    public StringBuilder getInfo() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("Монах:  \t").append(Monk.super.name)
+                .append("\t HP:  \t").append(Monk.super.hp)
+                .append("\t Speed: \t").append(Monk.super.speed)
+                .append("\t ATK: \t").append(Monk.super.attack)
+                .append("\t MP: \t").append(Monk.super.mana);
 
     }
 
