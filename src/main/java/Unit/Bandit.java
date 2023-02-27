@@ -1,5 +1,7 @@
 package Unit;
 
+import java.util.ArrayList;
+
 public class Bandit extends Warrior {
     int disguise;
 
@@ -8,8 +10,8 @@ public class Bandit extends Warrior {
         this.disguise = disguise;
     }
 
-    public Bandit(String name) {
-        super(name, 15.0f, 30, 8, 2, 4, 3, 6, 1,2);
+    public Bandit(String name, Vector2D coords) {
+        super(name, 15.0f, 30, 8, 2, 4, 3, 6, coords.posX, coords.posY);
         this.disguise = 10;
 
     }
@@ -18,10 +20,8 @@ public class Bandit extends Warrior {
     @Override
     public StringBuilder getInfo() {
         StringBuilder builder = new StringBuilder();
-        return builder.append("Фермер: \t").append(Bandit.super.name)
-                .append("\t HP: \t").append(Bandit.super.hp)
-                .append("\t Speed: \t").append(Bandit.super.speed)
-                .append("\t ATK: \t").append(Bandit.super.attack);
+        return builder.append(" Разбойник:\t").append(Bandit.super.name)
+                .append("\t HP: \t").append(Bandit.super.hp);
     }
 
 
@@ -32,7 +32,7 @@ public class Bandit extends Warrior {
     }
 
     @Override
-    public void step() {
+    public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
 
     }
 }

@@ -1,5 +1,7 @@
 package Unit;
 
+import java.util.ArrayList;
+
 public abstract class Magic extends Human {
     protected int mana;
     protected int maxMana;
@@ -18,7 +20,7 @@ public abstract class Magic extends Human {
     }
 
     @Override
-    public void step() {
+    public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
 
     }
 }

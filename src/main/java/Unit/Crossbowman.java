@@ -8,24 +8,20 @@ public class Crossbowman  extends Shooter {
         super(name, hp, maxHp, attack, minDamage, maxDamage, protection, speed, posX, posY, cartridges, range);
     }
 
-            public Crossbowman(String name) {
-        super(name, 30.0f, 100, 10, 10, 20, 5,9, 1,2, 10, 2);
+            public Crossbowman(String name, Vector2D coords) {
+        super(name, 30.0f, 100, 10, 10, 20, 5,9, 10,2, coords.posX, coords.posY);
     }
     @Override
     public StringBuilder getInfo() {
         StringBuilder builder = new StringBuilder();
-        return builder.append("Арбалет:  \t").append(Crossbowman.super.name)
+        return builder.append(" Арбалет: \t").append(Crossbowman.super.name)
                 .append("\t HP: \t").append(Crossbowman.super.hp)
-                .append("\t Speed: \t").append(Crossbowman.super.speed)
-                .append("\t ATK: \t").append(Crossbowman.super.attack)
-                .append("\t Arrows: ").append(Crossbowman.super.cartridges);
+                .append("\t State: ").append(Crossbowman.super.state)
+                .append("\t Arrows: ").append(Crossbowman.super.cartridges)
+                ;
     }
 
-    //    Атака дальнего боя (-HP и шанс заблокировать атаку противника на 1 ход)
-    @Override
-    public Integer getAttack() {
-        return attack;
-    }
+
 }
 
 

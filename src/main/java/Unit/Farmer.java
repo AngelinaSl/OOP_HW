@@ -1,37 +1,35 @@
 package Unit;
 
+import java.util.ArrayList;
+
 public class Farmer extends Human {
-    public Farmer(String name, Float hp, Integer maxHp, Integer attack, Integer minDamage, Integer maxDamage, Integer protection, Integer speed, Integer posX, Integer posY) {
-        super(name, hp, maxHp, attack, minDamage, maxDamage, protection, speed, posX, posY);
+
+    protected int cartridges;
+
+    public Farmer(String name, float hp, int maxHp, int attack, int damageMin, int damageMax, int defense, int speed, int cartridges, int posX, int posY) {
+        super(name, hp, maxHp, attack, damageMin, damageMax, defense, speed, posX, posY);
+        this.cartridges = cartridges;
     }
+
+
 
     @Override
-    public void step() {
+    public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
 
     }
 
 
-    public Farmer(String name) {
-        super(name, 20.0f, 20, 2, 1, 1, 1, 3, 1,1);
+    public Farmer(String name, Vector2D coords) {
+        super(name, 20.0f, 20, 2, 1, 1, 1, 3, coords.posX, coords.posY);
+        this.cartridges = 300;
     }
 
     @Override
     public StringBuilder getInfo() {
         StringBuilder builder = new StringBuilder();
-        return builder.append("Фермер: \t").append(Farmer.super.name)
+        return builder.append(" Фермер:\t").append(Farmer.super.name)
                 .append("\t HP: \t").append(Farmer.super.hp)
-                .append("\t Speed: \t").append(Farmer.super.speed)
-                .append("\t ATK: \t").append(Farmer.super.attack)
-                ;
+                .append("\t State: ").append(Farmer.super.state);
     }
 
-
-
-    //    Кормит
-    public void treat(Human human){
-    }
-    //    Подносит патроны
-    public void armiger (Shooter Shooter){
-
-    }
 }

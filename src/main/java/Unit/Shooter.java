@@ -1,35 +1,44 @@
 package Unit;
 
-public abstract class Shooter extends Human {
-    int range;
-    int cartridges;
+import java.util.ArrayList;
 
-    public Shooter(String name, Float hp, Integer maxHp, Integer attack, Integer minDamage, Integer maxDamage,
-                   Integer protection, Integer speed, Integer posX, Integer posY, Integer cartridges, Integer range) {
-        super(name, hp, maxHp, attack, minDamage, maxDamage, protection, speed, posX, posY);
+public abstract class Shooter extends Human {
+    protected int range;
+    protected int cartridges;
+    protected Shooter(String name, float hp, int maxHp, int attack, int damageMin,
+                      int damageMax, int defense, int speed, int cartridges,
+                      int range, int posX, int posY) {
+        super(name, hp, maxHp, attack, damageMin, damageMax, defense, speed, posX, posY);
         this.range = range;
         this.cartridges = cartridges;
     }
 
-
-
-    public int getRange() {return range;}
-    public void setRange(int range) {this.range = range;}
-
-
     @Override
-    public void step() {
-        int cart = getCartridges();
-        if (cart > 0) {
-            setCartridges(cart-1);
+    public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
+        if (state.equals("Die") || cartridges == 0) return;
+        makeDamage(team2.get(findNearest(team2)));
+        if (team2.get(findNearest(team2)).hp <= 0) {
+            team2.get(findNearest(team2)).state = "Die";
         }
+        if (findFarmer(team1) == true){
+            return;
+        }
+        else cartridges--;
     }
 
-    public int getCartridges() {
-        return this.cartridges;
-    }
 
-    public void setCartridges(int cartridges) {
-        this.cartridges = cartridges;
+    protected boolean findFarmer(ArrayList<Human> team) {
+        ArrayList <Human> arrayFarmer = new ArrayList<>();
+        for (int i = 0; i < team.size(); i++) {
+            if (team.get(i).getInfo().toString().split(":")[0].equals("Фермер")  && team.get(i).state.equals("Stand")) {
+                    arrayFarmer.add(team.get(i));
+            }
+        }
+        switch (arrayFarmer.size()) {
+            case (0):
+                return false;
+            default:
+                return true;
+        }
     }
 }

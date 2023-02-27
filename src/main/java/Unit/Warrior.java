@@ -1,5 +1,7 @@
 package Unit;
 
+import java.util.ArrayList;
+
 public abstract class Warrior extends Human{
 
 
@@ -8,15 +10,11 @@ public abstract class Warrior extends Human{
     }
 
     @Override
-    public void step() {
+    public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
 
     }
 
-    //    Атака ближнего боя
-    @Override
-    public Integer getAttack() {
-        return attack;
-    }
+
 
     }
 

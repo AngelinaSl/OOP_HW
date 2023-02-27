@@ -4,8 +4,8 @@ public class Spearman extends Warrior {
         super(name, hp, maxHp, attack, minDamage, maxDamage, protection, speed, posX, posY);
     }
 
-    public Spearman(String name) {
-        super(name, 15.0f, 20, 4, 1, 3, 5, 4, 2,2);
+    public Spearman(String name, Vector2D coords) {
+        super(name, 15.0f, 20, 4, 1, 3, 5, 4, coords.posX, coords.posY);
 
 
     }
@@ -13,10 +13,9 @@ public class Spearman extends Warrior {
     @Override
     public StringBuilder getInfo() {
         StringBuilder builder = new StringBuilder();
-        return builder.append("Копейщик: \t").append(Spearman.super.name)
+        return builder.append(" Копейщик: \t").append(Spearman.super.name)
                 .append("\t HP: \t").append(Spearman.super.hp)
-                .append("\t Speed: \t").append(Spearman.super.speed)
-                .append("\t ATK: \t").append(Spearman.super.attack);
+                .append("\t State: ").append(Spearman.super.state);
     }
 
 
