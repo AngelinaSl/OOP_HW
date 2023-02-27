@@ -13,7 +13,6 @@ public class main {
         ArrayList<Human> holyTeam = new ArrayList<>();
         ArrayList<Human> darkTeam = new ArrayList<>();
         ArrayList<Human> allTeam = new ArrayList<>();
-        String game = "";
         Scanner user_input = new Scanner(System.in);
         createTeam(holyTeam, 1, 5, 1);
         createTeam(darkTeam, 4, 8, 10);
