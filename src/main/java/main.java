@@ -101,10 +101,12 @@ public class main {
             System.out.println("+-------------------------------------------------------------------+");
         }
         static void searchWinner (ArrayList < Human > holyTeam, ArrayList < Human > darkTeam){
+
             int holySize = Human.findLive(holyTeam).size();
             int darkSize = Human.findLive(darkTeam).size();
             System.out.println(holySize > darkSize ? "Победила команда Света" : "Победила команда Тьмы");
         }
+
     }
 
 

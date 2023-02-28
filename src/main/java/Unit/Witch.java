@@ -7,7 +7,8 @@ public class Witch extends Magic {
 
 
     public Witch(String name, Vector2D coords) {
-        super(name, 20.0f, 20, 17, -5, -5, 12, 8, coords.posX, coords.posY);
+        super(name, 15.0f, 20, 17, -5, -8, 12, 8, coords.posX, coords.posY);
+        mana = 15;
 
     }
     @Override
@@ -18,8 +19,4 @@ public class Witch extends Magic {
                 .append("\t State: ").append(Witch.super.state)
                 .append("\t MP: \t").append(Witch.super.mana);
     }
-
-
-
-
 }

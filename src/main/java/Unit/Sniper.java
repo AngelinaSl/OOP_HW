@@ -5,12 +5,9 @@ public class Sniper extends Shooter{
                   Integer protection, Integer speed, Integer posX, Integer posY, Integer cartridges, Integer range) {
         super(name, hp, maxHp, attack, minDamage, maxDamage, protection, speed, posX, posY, cartridges, range);
     }
-
-
     public Sniper(String name, Vector2D coords) {
-        super(name, 15.0f, 30, 12, 8, 10, 10, 9, 20, 3, coords.posX, coords.posY);
+        super(name, 15.0f, 20, 12, 8, 10, 10, 9, 20, 3, coords.posX, coords.posY);
     }
-
     @Override
     public StringBuilder getInfo() {
         StringBuilder builder = new StringBuilder();
@@ -19,6 +16,4 @@ public class Sniper extends Shooter{
                 .append("\t State: ").append(Sniper.super.state)
                 .append("\t Arrows: ").append(Sniper.super.cartridges);
     }
-
-
 }

@@ -12,7 +12,6 @@ public abstract class Shooter extends Human {
         this.range = range;
         this.cartridges = cartridges;
     }
-
     @Override
     public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
         if (state.equals("Die") || cartridges == 0) return;
@@ -25,8 +24,6 @@ public abstract class Shooter extends Human {
         }
         else cartridges--;
     }
-
-
     protected boolean findFarmer(ArrayList<Human> team) {
         ArrayList <Human> arrayFarmer = new ArrayList<>();
         for (int i = 0; i < team.size(); i++) {

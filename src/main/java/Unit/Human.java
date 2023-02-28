@@ -32,8 +32,6 @@ public abstract class Human implements GameInterfaсe {
         this.state = "Stand";
     }
 
-
-
     public int getAttack() {
         return this.attack;
     }
@@ -50,17 +48,29 @@ public abstract class Human implements GameInterfaсe {
         if (damage>0) {
             if (enemy.hp > damageMin) {
                 enemy.hp = enemy.hp - damageMin;
-            } else enemy.hp = 0;
+                System.out.printf("%s DAMAGE %s\n", name, enemy.name);
+                return;
+
+            } else {
+                enemy.hp = 0;
+                System.out.printf("%s DAMAGE %s\n", name, enemy.name);
+                return;
+            }
         }
         if (damage < 0) {
             if (enemy.hp > damageMax) {
                 enemy.hp = enemy.hp - damageMax;
+                System.out.printf("%s DAMAGE %s\n", name, enemy.name);
+                return;
             }
         }
         else {
             enemy.hp = enemy.hp - ((damageMin+damageMax)/2);
+            System.out.printf("%s DAMAGE %s\n", name, enemy.name);
             if (enemy.hp < 0){
                 enemy.hp = 0;
+                System.out.printf("%s DAMAGE %s\n", name, enemy.name);
+                return;
             }
         }
     }
@@ -72,10 +82,9 @@ public abstract class Human implements GameInterfaсe {
     }
 
 
-
-
-
-
+//    public String getState() {
+//        return state;
+//    }
 
     public int findNearest(ArrayList<Human> team){
         double min = 100;

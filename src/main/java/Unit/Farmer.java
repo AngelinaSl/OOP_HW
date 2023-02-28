@@ -11,16 +11,8 @@ public class Farmer extends Human {
         this.cartridges = cartridges;
     }
 
-
-
-    @Override
-    public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
-
-    }
-
-
     public Farmer(String name, Vector2D coords) {
-        super(name, 20.0f, 20, 2, 1, 1, 1, 3, coords.posX, coords.posY);
+        super(name, 15.0f, 20, 2, 1, 1, 1, 3, coords.posX, coords.posY);
         this.cartridges = 300;
     }
 
@@ -30,6 +22,13 @@ public class Farmer extends Human {
         return builder.append(" Фермер:\t").append(Farmer.super.name)
                 .append("\t HP: \t").append(Farmer.super.hp)
                 .append("\t State: ").append(Farmer.super.state);
+    }
+
+    @Override
+    public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
+        if (state != "Die"){
+            state = "Stand";
+        }
     }
 
 }

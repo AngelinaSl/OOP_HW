@@ -11,24 +11,15 @@ public class Bandit extends Warrior {
     }
 
     public Bandit(String name, Vector2D coords) {
-        super(name, 15.0f, 30, 8, 2, 4, 3, 6, coords.posX, coords.posY);
+        super(name, 15.0f, 20, 8, 2, 4, 3, 6, coords.posX, coords.posY);
         this.disguise = 10;
 
     }
-
-
     @Override
     public StringBuilder getInfo() {
         StringBuilder builder = new StringBuilder();
         return builder.append(" Разбойник:\t").append(Bandit.super.name)
                 .append("\t HP: \t").append(Bandit.super.hp);
-    }
-
-
-    public int getDisguise() {return disguise;}
-
-    public void setDisguise(int disguise) {
-        this.disguise = disguise;
     }
 
     @Override
