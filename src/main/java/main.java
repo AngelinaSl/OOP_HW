@@ -3,86 +3,92 @@ import Unit.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
-
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 public class main {
-    public static void main(String[] args) {
 
-        ArrayList<Human> holyTeam = new ArrayList<>();
-        ArrayList<Human> darkTeam = new ArrayList<>();
-        ArrayList<Human> allTeam = new ArrayList<>();
+    static final int UNITS = 10;
+    public static ArrayList<Human> allTeam = new ArrayList<>();
+    public static ArrayList<Human> holyTeam = new ArrayList<>();
+    public static ArrayList<Human> darkTeam = new ArrayList<>();
+
+    public static void main(String[] args) {
         Scanner user_input = new Scanner(System.in);
+        System.out.print("Press Enter to begin.");
+        user_input.nextLine();
         createTeam(holyTeam, 1, 5, 1);
         createTeam(darkTeam, 4, 8, 10);
         allTeam.addAll(holyTeam);
         allTeam.addAll(darkTeam);
+        ArrayList<Human> holyLive = new ArrayList<>(holyTeam);
+        ArrayList<Human> darkLive = new ArrayList<>(darkTeam);
+        sortTeam(allTeam);
 
         while (true) {
-            sortTeam(holyTeam);
-            sortTeam(darkTeam);
-            sortTeam(allTeam);
-            if (Human.findLive(holyTeam).size() != 0 && Human.findLive(darkTeam).size() != 0) {
-                getInfoGame(holyTeam, darkTeam);
-                for (Human character : allTeam) {
-                    if (holyTeam.contains(character)) {
-                        character.step(Human.findLive(holyTeam), Human.findLive(darkTeam));
+            View.view();
+            user_input.nextLine();
+            for (Human human: allTeam) {
+                if (holyLive.size() != 0 && darkLive.size() != 0) {
+//                    searchWinner(holyTeam, darkTeam);
+                    if (holyTeam.contains(human)) {
+                        human.step(holyLive, darkLive);
+                        darkLive = findLive(darkTeam);
                     } else {
-                        character.step(Human.findLive(darkTeam), Human.findLive(holyTeam));
-                        }
-                }
-                user_input.nextLine();
-            }
+                        human.step(darkLive, holyLive);
+                        holyLive = findLive(holyTeam);
+                    }
+                } else {
+                    View.view();
+                    searchWinner(holyTeam, darkTeam);
 
-            else {
-                searchWinner(holyTeam, darkTeam);
-                break;
+                    return;
+                }
             }
         }
     }
-        static void createTeam (ArrayList team,int start, int end, int posY){
-            int units = 10;
-            for (int i = 1; i <= units; i++) {
-                int rnd = new Random().nextInt(start, end);
-                switch (rnd) {
-                    case (1):
-                        team.add(new Sniper(getName(), new Vector2D(i, posY)));
-                        break;
-                    case (2):
-                        team.add(new Bandit(getName(), new Vector2D(i, posY)));
-                        break;
-                    case (3):
-                        team.add(new Witch(getName(), new Vector2D(i, posY)));
-                        break;
-                    case (4):
-                        team.add(new Farmer(getName(), new Vector2D(i, posY)));
-                        break;
-                    case (5):
-                        team.add(new Crossbowman(getName(), new Vector2D(i, posY)));
-                        break;
-                    case (6):
-                        team.add(new Monk(getName(), new Vector2D(i, posY)));
-                        break;
-                    case (7):
-                        team.add(new Spearman(getName(), new Vector2D(i, posY)));
-                        break;
-                }
-            }
-        }
-        static void getInfoGame (ArrayList < Human > team1, ArrayList < Human > team2){
-            printingHeadlines();
-            for (int i = 0; i < team1.size(); i++) {
-                System.out.println(team1.get(i).getInfo());
-            }
-            printingLine();
 
-            printingHeadlines();
-            for (int i = 0; i < team2.size(); i++) {
-                System.out.println(team2.get(i).getInfo());
+    public static ArrayList<Human> findLive(ArrayList<Human> team) {
+        ArrayList findLive = new ArrayList<>();
+        for (int i = 0; i < team.size(); i++) {
+            if (team.get(i).getHp() > 0 ) {
+                findLive.add(team.get(i));
             }
-            printingLine();
         }
+        return findLive;
+    }
+
+    static void createTeam(ArrayList team, int start, int end, int posY) {
+        int units = 10;
+        for (int i = 1; i <= units; i++) {
+            int rnd = new Random().nextInt(start, end);
+            switch (rnd) {
+                case (1):
+                    team.add(new Sniper(getName(), new Vector2D(i, posY)));
+                    break;
+                case (2):
+                    team.add(new Bandit(getName(), new Vector2D(i, posY)));
+                    break;
+                case (3):
+                    team.add(new Witch(getName(), new Vector2D(i, posY)));
+                    break;
+                case (4):
+                    team.add(new Farmer(getName(), new Vector2D(i, posY)));
+                    break;
+                case (5):
+                    team.add(new Crossbowman(getName(), new Vector2D(i, posY)));
+                    break;
+                case (6):
+                    team.add(new Monk(getName(), new Vector2D(i, posY)));
+                    break;
+                case (7):
+                    team.add(new Spearman(getName(), new Vector2D(i, posY)));
+                    break;
+            }
+        }
+    }
+
         static void sortTeam (ArrayList < Human > team) {
             team.sort((o1, o2) -> o2.getSpeed() - o1.getSpeed());
         }
@@ -92,21 +98,26 @@ public class main {
             String name = name1 + "_" + int1;
             return name;
         }
-        static void printingLine () {
-            System.out.println("+-------------------------------------------------------------------+");
-        }
-        static void printingHeadlines () {
-            System.out.println("+-------------------------------------------------------------------+");
-            System.out.println("|  Класс   |    Имя    |      HP     |     State     |  Arrows|Mana |");
-            System.out.println("+-------------------------------------------------------------------+");
-        }
+
         static void searchWinner (ArrayList < Human > holyTeam, ArrayList < Human > darkTeam){
 
-            int holySize = Human.findLive(holyTeam).size();
-            int darkSize = Human.findLive(darkTeam).size();
-            System.out.println(holySize > darkSize ? "Победила команда Света" : "Победила команда Тьмы");
-        }
+            int holySize = findLive(holyTeam).size();
+            int darkSize = findLive(darkTeam).size();
 
-    }
+            if (holySize == 0){
+                System.out.println(AnsiColors.ANSI_CYAN+"*********************"+ AnsiColors.ANSI_RESET);
+                System.out.println(AnsiColors.ANSI_CYAN+"Победила команда Тьмы"+ AnsiColors.ANSI_RESET);
+                System.out.println(AnsiColors.ANSI_CYAN+"*********************"+ AnsiColors.ANSI_RESET);
+            }
+            else if (darkSize == 0){
+                System.out.println(AnsiColors.ANSI_YELLOW+"**********************"+ AnsiColors.ANSI_RESET);
+                System.out.println(AnsiColors.ANSI_YELLOW+"Победила команда Света"+ AnsiColors.ANSI_RESET);
+                System.out.println(AnsiColors.ANSI_YELLOW+"**********************"+ AnsiColors.ANSI_RESET);
+            }
+
+        }
+}
+
+
 
 

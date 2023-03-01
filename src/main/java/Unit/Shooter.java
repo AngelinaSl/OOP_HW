@@ -38,4 +38,16 @@ public abstract class Shooter extends Human {
                 return true;
         }
     }
+
+//    @Override
+//    public  String toString() {
+//
+//        return name +
+//                "\t|"+
+//                "\t| H:" + Math.round(hp) +
+//                " \tDmg:" + Math.round(Math.abs((damageMin+damageMax)/2)) + "\t" +
+//                state +"  \tArr:" +
+//                 cartridges +
+//                "\t\t";
+//    }
 }

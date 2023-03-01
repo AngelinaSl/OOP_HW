@@ -22,25 +22,31 @@ public abstract class Magic extends Human {
         }
         return wounded;
     }
-    public void makeHealing(ArrayList<Human> team){
-        int size = team.size();
-//        int magDamage = new Random().nextInt(damageMin, damageMax);
-        int indexRandomWounded = new Random().nextInt(0, size);
+//    public void makeHealing(Human human){
+//        float newHp = human.getHp()-damageMax;
+//        if (newHp > human.getMaxHp()) {
+//            human.getDamage(human.getMaxHp()-human.hp);
+//        } else {
+//            human.getDamage(damageMax);
+//
+//        }
+//    }
 
-        if (team.get(indexRandomWounded).hp - damageMax > team.get(indexRandomWounded).maxHp){
-            team.get(indexRandomWounded).hp = team.get(indexRandomWounded).maxHp;
-            System.out.printf("%s healing %s\n", name,team.get(indexRandomWounded).name );
-        }
-        else{
-            team.get(indexRandomWounded).hp = team.get(indexRandomWounded).hp - damageMax;
-        }
-    }
     @Override
     public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
         if (state.equals("Die") || mana == 0) return;
-        makeHealing(SearchWounded(team1));
+
+        for (Human human: team1
+             ) {
+            float newHp = human.getHp()-damageMax;
+            if (newHp > human.getMaxHp()) {
+                human.getDamage(human.getMaxHp()-human.hp);
+            } else {
+                human.getDamage(damageMax);
+            }
+        }
         mana-=5;
-        return;
+
 
 
 
