@@ -16,26 +16,17 @@ public abstract class Magic extends Human {
     public ArrayList<Human> SearchWounded(ArrayList<Human> team) {
         ArrayList<Human> wounded = new ArrayList<>();
         for (int i = 0; i < team.size(); i++) {
-            if (team.get(i).hp < team.get(i).maxHp && team.get(i).state.equals("Stand")) {
+            if (team.get(i).hp < team.get(i).maxHp && team.get(i).state.equals("❤")) {
                 wounded.add(team.get(i));
             }
         }
         return wounded;
     }
-//    public void makeHealing(Human human){
-//        float newHp = human.getHp()-damageMax;
-//        if (newHp > human.getMaxHp()) {
-//            human.getDamage(human.getMaxHp()-human.hp);
-//        } else {
-//            human.getDamage(damageMax);
-//
-//        }
-//    }
+
 
     @Override
     public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
-        if (state.equals("Die") || mana == 0) return;
-
+        if (state.equals("✙") || mana == 0) return;
         for (Human human: team1
              ) {
             float newHp = human.getHp()-damageMax;
@@ -46,11 +37,6 @@ public abstract class Magic extends Human {
             }
         }
         mana-=5;
-
-
-
-
-
     }
 }
 

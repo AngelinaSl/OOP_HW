@@ -29,7 +29,7 @@ public abstract class Human implements GameInterfaсe {
         this.defense = defense;
         this.speed = speed;
         this.coords = new Vector2D(posX, posY);
-        this.state = "Stand";
+        this.state = "❤";
     }
 
     public int getMaxHp() {
@@ -59,22 +59,17 @@ public abstract class Human implements GameInterfaсe {
     protected void makeDamage(Human enemy) {
         int damage = enemy.getDefense() - attack;
         float enemyHp;
-
         if (damage > 0) {
             enemyHp = enemy.hp - damageMin;
-
         } else if (damage < 0) {
-
             enemyHp = enemy.hp - damageMax;
         } else {
             enemyHp = enemy.hp - ((damageMin + damageMax) / 2);}
             if (enemyHp <= 0) {
                 enemy.hp = 0;
-                enemy.state = "Die";
+                enemy.state = "✙";
             } else {
                 enemy.hp = enemyHp;
-
-
             }
         }
 
@@ -82,7 +77,7 @@ public abstract class Human implements GameInterfaсe {
     protected void getDamage(float damage) {
         hp -= damage;
         if (hp > maxHp) hp = maxHp;
-        if (hp < 0) state = "Die";
+        if (hp < 0) state = "✙";
     }
 
 
@@ -101,30 +96,10 @@ public abstract class Human implements GameInterfaсe {
         }
         return index;
     }
-//    public static ArrayList<Human> findLive(ArrayList<Human> team) {
-//        ArrayList findLive = new ArrayList<>();
-//        for (int i = 0; i < team.size(); i++) {
-//            if (team.get(i).getHp() > 0 ) {
-//                findLive.add(team.get(i));
-//            }
-//        }
-//        return findLive;
-//    }
+
 
     @Override
     public StringBuilder getInfo() {
         return null;
-    }
-
-
-    @Override
-    public String toString() {
-
-        return name +
-                "\t|" +
-                "\t| H:" + Math.round(hp) +
-                " \tDmg:" + Math.round(Math.abs((damageMin + damageMax) / 2)) + "\t" +
-                state + "  \t" +
-                "\t\t";
     }
 }

@@ -14,19 +14,19 @@ public class Bandit extends Warrior {
     public StringBuilder getInfo() {
         StringBuilder builder = new StringBuilder();
         return builder.append("Разбойник:\t").append(Bandit.super.name)
-                .append("\t HP: \t").append(Bandit.super.hp);
+                .append("\t HP: \t").append(Bandit.super.hp)
+                .append("\t sym:").append("\uD83D\uDC80");
     }
-
-
 
     @Override
     public String toString() {
 
         return name +
-                "\t|"+ "\uD83D\uDC80" +
-                "\t| H:" + Math.round(hp) +
-                " \tDmg:" + Math.round(Math.abs((damageMin+damageMax)/2)) + "\t" +
+                "\uD83D\uDC80" +
+                "\t| \uD83D\uDC8A:" + Math.round(hp) +
+                " \t \uD83D\uDCAA:" + Math.round(Math.abs((damageMin+damageMax)/2)) + "\t" +
                 state +"  \t"+
                 "\t\t";
     }
+
 }

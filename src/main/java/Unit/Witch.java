@@ -13,15 +13,16 @@ public class Witch extends Magic {
         return builder.append("Колдун:   \t").append(Witch.super.name)
                 .append("\t HP: \t").append(Witch.super.hp)
                 .append("\t State: ").append(Witch.super.state)
-                .append("\t MP: \t").append(Witch.super.mana);
+                .append("\t MP: \t").append(Witch.super.mana)
+                .append("\t sym:").append("\uD83E\uDDD9");
     }
     @Override
     public String toString() {
 
         return name +
-                "\t|"+ "\uD83E\uDDD9"+
-                "\t| H:" + Math.round(hp) +
-                " \tDmg:" + Math.round(Math.abs((damageMin+damageMax)/2)) + "\t" +
+                "\uD83E\uDDD9"+
+                "\t| \uD83D\uDC8A:" + Math.round(hp) +
+                " \t \uD83D\uDCAA:" + Math.round(Math.abs((damageMin+damageMax)/2)) + "\t" +
                 state +"  \t"+
                 "\t\t";
     }

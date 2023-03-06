@@ -15,22 +15,23 @@ public class Farmer extends Human {
         StringBuilder builder = new StringBuilder();
         return builder.append("Фермер:\t").append(Farmer.super.name)
                 .append("\t HP: \t").append(Farmer.super.hp)
-                .append("\t State: ").append(Farmer.super.state);
+                .append("\t State: ").append(Farmer.super.state)
+                .append("\t sym:").append("\uD83D\uDD28");
     }
 
     @Override
     public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
-        if (state != "Die"){
-            state = "Stand";
+        if (state != "✙"){
+            state = "❤";
         }
     }
     @Override
     public String toString() {
 
         return name +
-                "\t|"+ "\uD83D\uDD28" +
-                "\t| H:" + Math.round(hp) +
-                " \tDmg:" + Math.round(Math.abs((damageMin+damageMax)/2)) + "\t" +
+                "\uD83D\uDD28" +
+                "\t| \uD83D\uDC8A:" + Math.round(hp) +
+                " \t \uD83D\uDCAA:" + Math.round(Math.abs((damageMin+damageMax)/2)) + "\t" +
                 state +"  \t"+
                 "\t\t";
     }

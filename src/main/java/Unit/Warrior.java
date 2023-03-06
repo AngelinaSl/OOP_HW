@@ -10,16 +10,13 @@ public abstract class Warrior extends Human{
     }
     @Override
     public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
-        if (state.equals("Die")) return;
+        if (state.equals("✙")) return;
         int index = findNearest(team2);
         Human enemy = team2.get(index);
-//        System.out.println(coords.getDistance(enemy.coords));
-
-        if (coords.getDistance(enemy.coords) < 2 & enemy.hp >0) {
-            enemy.getDamage(damageMax);
+        if (coords.getDistance(enemy.coords) < 2 & enemy.hp > 0) {
+            makeDamage(enemy);
             return;
         }
-
             if (coords.getDown(enemy.coords)) {
                 if (coords.posY - 1 > enemy.coords.posY && coords.getEmpty(team1, coords.posX, coords.posY - 1)) {
                     stepDown();
@@ -54,6 +51,5 @@ public abstract class Warrior extends Human{
             }
         }
     }
-
     }
 

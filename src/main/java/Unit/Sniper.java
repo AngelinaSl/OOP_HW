@@ -10,15 +10,16 @@ public class Sniper extends Shooter{
         return builder.append("Снайпер:  \t").append(Sniper.super.name)
                 .append("\t HP: \t").append(Sniper.super.hp)
                 .append("\t State: ").append(Sniper.super.state)
-                .append("\t Arrows: ").append(Sniper.super.cartridges);
+                .append("\t Arrows: ").append(Sniper.super.cartridges)
+                .append("\t sym:").append("\uD83D\uDD2B");
     }
     @Override
     public String toString() {
 
         return name +
-                "\t|"+ "\uD83D\uDD2B" +
-                "\t| H:" + Math.round(hp) +
-                " \tDmg:" + Math.round(Math.abs((damageMin+damageMax)/2)) + "\t" +
+                "\uD83D\uDD2B" +
+                "\t| \uD83D\uDC8A:" + Math.round(hp) +
+                " \t \uD83D\uDCAA:" + Math.round(Math.abs((damageMin+damageMax)/2)) + "\t" +
                 state +"  \t"+
                 "\t\t";
     }

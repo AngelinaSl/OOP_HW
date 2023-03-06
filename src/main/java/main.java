@@ -114,7 +114,6 @@ public class main {
                 System.out.println(AnsiColors.ANSI_YELLOW+"Победила команда Света"+ AnsiColors.ANSI_RESET);
                 System.out.println(AnsiColors.ANSI_YELLOW+"**********************"+ AnsiColors.ANSI_RESET);
             }
-
         }
 }
 

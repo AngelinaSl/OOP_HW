@@ -14,20 +14,19 @@ public abstract class Shooter extends Human {
     }
     @Override
     public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
-        if (state.equals("Die") || cartridges == 0) return;
+        if (state.equals("✙") || cartridges == 0) return;
         makeDamage(team2.get(findNearest(team2)));
         if (team2.get(findNearest(team2)).hp <= 0) {
-            team2.get(findNearest(team2)).state = "Die";
+            team2.get(findNearest(team2)).state = "✙";
         }
         if (findFarmer(team1) == true){
-            return;
         }
         else cartridges--;
     }
     protected boolean findFarmer(ArrayList<Human> team) {
         ArrayList <Human> arrayFarmer = new ArrayList<>();
         for (int i = 0; i < team.size(); i++) {
-            if (team.get(i).getInfo().toString().split(":")[0].equals("Фермер")  && team.get(i).state.equals("Stand")) {
+            if (team.get(i).getInfo().toString().split(":")[0].equals("Фермер")  && team.get(i).state.equals("❤")) {
                     arrayFarmer.add(team.get(i));
             }
         }
@@ -39,15 +38,5 @@ public abstract class Shooter extends Human {
         }
     }
 
-//    @Override
-//    public  String toString() {
-//
-//        return name +
-//                "\t|"+
-//                "\t| H:" + Math.round(hp) +
-//                " \tDmg:" + Math.round(Math.abs((damageMin+damageMax)/2)) + "\t" +
-//                state +"  \tArr:" +
-//                 cartridges +
-//                "\t\t";
-//    }
+
 }

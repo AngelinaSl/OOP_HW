@@ -13,16 +13,17 @@ public class Monk extends Magic {
         return builder.append("Монах:   \t").append(Monk.super.name)
                 .append("\t HP:  \t").append(Monk.super.hp)
                 .append("\t State: ").append(Monk.super.state)
-                .append("\t MP: \t").append(Monk.super.mana);
+                .append("\t MP: \t").append(Monk.super.mana)
+                .append("\t sym:").append("\uD83D\uDE4F");
 
     }
     @Override
     public String toString() {
 
         return name +
-                "\t|"+ "\uD83D\uDE4F" +
-                "\t| H:" + Math.round(hp) +
-                " \tDmg:" + Math.round(Math.abs((damageMin+damageMax)/2)) + "\t" +
+                 "\uD83D\uDE4F" +
+                "\t| \uD83D\uDC8A:" + Math.round(hp) +
+                " \t \uD83D\uDCAA:" + Math.round(Math.abs((damageMin+damageMax)/2)) + "\t" +
                 state +"  \t"+
                 "\t\t";
     }
