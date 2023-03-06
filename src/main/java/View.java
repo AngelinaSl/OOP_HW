@@ -26,7 +26,7 @@ public class View {
                 .replace('-', '\u2500');
     }
     private static String getChar(int x, int y){
-        String out = " | ";
+        String out = "|  ";
         for (Human human: main.allTeam) {
             if (human.getCoords()[0] == x && human.getCoords()[1] == y){
                 if (human.state == "✙") {
